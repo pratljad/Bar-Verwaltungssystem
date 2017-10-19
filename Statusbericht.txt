@@ -1,2 +1,2 @@
 13.10.2017 Stand: ERD Erstversion vorlegbar, Recherche Angular
-20.10.2017 Überarbeitung ERD, Erste Recherchen über Angular
+20.10.2017 Überarbeitung ERD, Erste Recherchen über Angular, Test App mit Angular, Mockup C# Client
