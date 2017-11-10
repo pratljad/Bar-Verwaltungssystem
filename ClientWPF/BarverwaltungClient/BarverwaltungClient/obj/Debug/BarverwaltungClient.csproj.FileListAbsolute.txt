@@ -1,0 +1,14 @@
+C:\HTL\5.Schuljahr\BSD\Barverwaltung\BarverwaltungClient\BarverwaltungClient\bin\Debug\BarverwaltungClient.exe.config
+C:\HTL\5.Schuljahr\BSD\Barverwaltung\BarverwaltungClient\BarverwaltungClient\bin\Debug\BarverwaltungClient.exe
+C:\HTL\5.Schuljahr\BSD\Barverwaltung\BarverwaltungClient\BarverwaltungClient\bin\Debug\BarverwaltungClient.pdb
+C:\HTL\5.Schuljahr\BSD\Barverwaltung\BarverwaltungClient\BarverwaltungClient\obj\Debug\BarverwaltungClient.csprojResolveAssemblyReference.cache
+C:\HTL\5.Schuljahr\BSD\Barverwaltung\BarverwaltungClient\BarverwaltungClient\obj\Debug\MainWindow.g.cs
+C:\HTL\5.Schuljahr\BSD\Barverwaltung\BarverwaltungClient\BarverwaltungClient\obj\Debug\App.g.cs
+C:\HTL\5.Schuljahr\BSD\Barverwaltung\BarverwaltungClient\BarverwaltungClient\obj\Debug\BarverwaltungClient_MarkupCompile.cache
+C:\HTL\5.Schuljahr\BSD\Barverwaltung\BarverwaltungClient\BarverwaltungClient\obj\Debug\BarverwaltungClient_MarkupCompile.lref
+C:\HTL\5.Schuljahr\BSD\Barverwaltung\BarverwaltungClient\BarverwaltungClient\obj\Debug\MainWindow.baml
+C:\HTL\5.Schuljahr\BSD\Barverwaltung\BarverwaltungClient\BarverwaltungClient\obj\Debug\BarverwaltungClient.g.resources
+C:\HTL\5.Schuljahr\BSD\Barverwaltung\BarverwaltungClient\BarverwaltungClient\obj\Debug\BarverwaltungClient.Properties.Resources.resources
+C:\HTL\5.Schuljahr\BSD\Barverwaltung\BarverwaltungClient\BarverwaltungClient\obj\Debug\BarverwaltungClient.csproj.GenerateResource.Cache
+C:\HTL\5.Schuljahr\BSD\Barverwaltung\BarverwaltungClient\BarverwaltungClient\obj\Debug\BarverwaltungClient.exe
+C:\HTL\5.Schuljahr\BSD\Barverwaltung\BarverwaltungClient\BarverwaltungClient\obj\Debug\BarverwaltungClient.pdb
