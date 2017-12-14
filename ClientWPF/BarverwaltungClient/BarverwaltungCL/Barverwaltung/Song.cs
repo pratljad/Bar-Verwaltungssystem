@@ -8,13 +8,15 @@ namespace BarverwaltungCL.Barverwaltung
 {
     public class Song
     {
-        private int IDSong;
-        private string Titel;
-        private string Interpret;
+        public int IDSong { get; private set; }
+        public int Tischnummer { get; private set; }
+        public string Titel { get; private set; }
+        public string Interpret { get; private set; }
 
-        public Song(int ID, string Titel, string Interpret)
+        public Song(int ID, int Tischnummer, string Titel, string Interpret)
         {
             this.IDSong = ID;
+            this.Tischnummer = Tischnummer;
             this.Titel = Titel;
             this.Interpret = Interpret;
         }

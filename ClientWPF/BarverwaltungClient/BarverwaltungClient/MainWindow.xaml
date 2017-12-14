@@ -3,58 +3,118 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"   
+        
         xmlns:local="clr-namespace:BarverwaltungClient"
         mc:Ignorable="d"
         Title="MainWindow" Height="713.166" Width="1140.517">
     <Grid>
-        <TabControl x:Name="tabControl" HorizontalAlignment="Left" Height="683" VerticalAlignment="Top" Width="1134">
-            <TabItem Header="Bestellungen" FontSize="16">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="157*"/>
+            <ColumnDefinition Width="32*"/>
+        </Grid.ColumnDefinitions>
+        <dragablz:TabablzControl Grid.ColumnSpan="2" Margin="0,0,0,-20.8" HorizontalAlignment="Left" Width="1134">
+            <dragablz:TabablzControl.InterTabController>
+                <dragablz:InterTabController />
+            </dragablz:TabablzControl.InterTabController>
+            <TabItem Header="Overview" FontSize="16" Margin="0,0,-3.8,-2.4">
                 <Grid Background="#FFE5E5E5">
-                    <ListView x:Name="listView1" HorizontalAlignment="Left" Height="629" Margin="10,10,0,0" VerticalAlignment="Top" Width="1109">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="126*"/>
+                        <ColumnDefinition Width="1003*"/>
+                    </Grid.ColumnDefinitions>
+                    <Canvas x:Name="CanvasTables" HorizontalAlignment="Left" Height="649" VerticalAlignment="Top" Width="1129" Background="#FFE5E5E5" Margin="0,0,-0.2,0" Grid.ColumnSpan="2"/>
+                </Grid>
+            </TabItem>
+            <TabItem Margin="-2.2,0,-43.4,-2.4" Header="Payment" FontSize="16">
+                <Grid Background="#FFE5E5E5">
+                    <materialDesign:Card Padding="10" Margin="16" Background="#FFADAEAE">
+                        <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}" HorizontalAlignment="Left" FontSize="25">Payment</TextBlock>
+                    </materialDesign:Card>
+                    <ListView x:Name="LV_Zahlungen" HorizontalAlignment="Left" Height="452" Margin="10,103,0,0" VerticalAlignment="Top" Width="1109" BorderBrush="#89000000">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn/>
                             </GridView>
                         </ListView.View>
                     </ListView>
+                    <Button x:Name="BTN_Bill" Content="Pay" HorizontalAlignment="Left" Margin="938,578,0,0" VerticalAlignment="Top" Width="154" Height="46" Click="BTN_Bill_Click" BorderBrush="Black" FontFamily="Roboto"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Rechnungen" FontSize="16">
+            <TabItem Header="Bills" FontSize="16" Margin="39.6,0,-43.4,-2.4" BorderBrush="#FFACACAC">
                 <Grid Background="#FFE5E5E5">
-                    <ListView x:Name="listView" HorizontalAlignment="Left" Height="629" Margin="10,10,0,0" VerticalAlignment="Top" Width="1109">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="171*"/>
+                        <ColumnDefinition Width="11*"/>
+                        <ColumnDefinition Width="14*"/>
+                        <ColumnDefinition Width="932*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <materialDesign:Card Padding="10" Margin="16" Background="#FFADAEAE" Grid.ColumnSpan="4">
+                        <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}" HorizontalAlignment="Left" FontSize="25">Bills</TextBlock>
+                    </materialDesign:Card>
+                    <ListView x:Name="LV_Rechnungen" HorizontalAlignment="Left" Height="451" Margin="10,103,0,0" VerticalAlignment="Top" Width="1109" Grid.ColumnSpan="4">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn/>
                             </GridView>
                         </ListView.View>
                     </ListView>
+                    <Button x:Name="BTN_Save" Content="Save all Bills" HorizontalAlignment="Left" Margin="741.8,578,0,0" VerticalAlignment="Top" Width="154" Height="46" Grid.Column="3" Click="BTN_Save_Click" BorderBrush="Black"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Reservierungen" FontSize="16">
+            <TabItem Header="Reservations" FontSize="16" Margin="41.4,0,-45.6,-2.4">
                 <Grid Background="#FFE5E5E5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="129*"/>
                         <ColumnDefinition Width="229*"/>
                         <ColumnDefinition Width="771*"/>
                     </Grid.ColumnDefinitions>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Playlist" FontSize="16">
-                <Grid Background="#FFE5E5E5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="129*"/>
-                        <ColumnDefinition Width="1000*"/>
-                    </Grid.ColumnDefinitions>
-                    <ListView x:Name="listView2" HorizontalAlignment="Left" Height="629" Margin="10,10,0,0" VerticalAlignment="Top" Width="1109" Grid.ColumnSpan="2">
+                    <materialDesign:Card Padding="10" Margin="16" Background="#FFADAEAE" Grid.ColumnSpan="4">
+                        <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}" HorizontalAlignment="Left" FontSize="25">Reservations</TextBlock>
+                    </materialDesign:Card>
+                    <ListView x:Name="ListViewReservierungen" HorizontalAlignment="Left" Height="472" VerticalAlignment="Top" Width="1108" Grid.ColumnSpan="3" Margin="10,103,0,0">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn/>
                             </GridView>
                         </ListView.View>
                     </ListView>
+                    <Button x:Name="BTN_AddReservation" Content="Add" Grid.Column="2" HorizontalAlignment="Left" Margin="577.4,574,0,26" Width="165" Click="BTN_AddReservation_Click" BorderBrush="Black"/>
+                    <Button x:Name="BTN_Remove_Reservation" Content="Remove" Grid.Column="2" HorizontalAlignment="Left" Margin="407.4,574,0,26" Width="165" BorderBrush="Black" Click="BTN_Remove_Reservation_Click"/>
                 </Grid>
             </TabItem>
-        </TabControl>
-
+            <TabItem Header="Playlist" FontSize="16" Margin="44.6,0,-48.8,-2.4">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="129*"/>
+                        <ColumnDefinition Width="1000*"/>
+                    </Grid.ColumnDefinitions>
+                    <materialDesign:Card Padding="10" Margin="16" Background="#FFADAEAE" Grid.ColumnSpan="4">
+                        <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}" HorizontalAlignment="Left" FontSize="25">Playlist</TextBlock>
+                    </materialDesign:Card>
+                    <ListView x:Name="ListViewPlaylist" HorizontalAlignment="Left" Height="456" Margin="10,98,0,0" VerticalAlignment="Top" Width="1109" Grid.ColumnSpan="2">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn/>
+                            </GridView>
+                        </ListView.View>
+                        <Separator/>
+                    </ListView>
+                    <Button x:Name="BTN_Remove" Content="Remove" Grid.Column="1" HorizontalAlignment="Left" Margin="810,578,0,0" VerticalAlignment="Top" Width="154" Height="46" Click="BTN_Remove_Click" BorderBrush="Black"/>
+                </Grid>
+            </TabItem>
+        </dragablz:TabablzControl>
     </Grid>
 </Window>

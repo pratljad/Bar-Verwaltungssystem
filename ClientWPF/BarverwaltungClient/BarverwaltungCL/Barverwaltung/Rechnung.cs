@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BarverwaltungCL.IDManager;
 
 namespace BarverwaltungCL.Barverwaltung // ID vom Konstruktur raustun und IDManager machen
 {
@@ -14,16 +15,32 @@ namespace BarverwaltungCL.Barverwaltung // ID vom Konstruktur raustun und IDMana
 
     public class Rechnung
     {
-        private int IDRechnung;
-        private DateTime TimestampR;
-        private StateRechnung stateRechnung;
-        private List<Bestellung> allBestellungen;
+        public int IDRechnung { get; set; }
+        public DateTime TimestampR { get; private set; }
+        public StateRechnung stateRechnung { get; private set; }
+        public List<Bestellung> allBestellungen { get; private set; }
 
-        public Rechnung (int IDRechnung, DateTime TimestampR, StateRechnung stateRechnung)
+        public double PreisRechnung
         {
-            this.IDRechnung = IDRechnung;
+            get
+            {
+                double returnValue = 0;
+
+                foreach (Bestellung b in allBestellungen)
+                {
+                    returnValue += b.PreisBestellung;
+                }
+
+                return returnValue;
+            }
+
+            private set { }
+        }
+
+        public Rechnung (DateTime TimestampR)
+        {
             this.TimestampR = TimestampR;
-            this.stateRechnung = stateRechnung;
+            this.stateRechnung = StateRechnung.NotPayed;
 
             this.allBestellungen = new List<Bestellung>();
         }

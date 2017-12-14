@@ -15,15 +15,35 @@ namespace BarverwaltungCL.Barverwaltung
 
     public class ItemBV
     {
-        private int IDItem;
-        private Typ TypItem;
-        private string Bezeichnung;
-        private float PreisItem;
-        private List<Tabak> allTabak;
+        //private int IDItem;
+        public Typ TypItem { get; private set; }
+        public string Bezeichnung { get; private set; }
+        public double PreisItem { get; private set; }
+        public List<Tabak> allTabak { get; private set; }
 
-        public ItemBV(int IDItem, Typ TypItem, string Bezeichnung, float PreisItem)
+        public string allTabakLV
         {
-            this.IDItem = IDItem;
+            get
+            {
+                string returnValue = "";
+
+                foreach (Tabak t in allTabak)
+                {
+                    if (returnValue == "")
+                        returnValue = t.getBezeichnung();
+                    else
+                        returnValue += "," + t.getBezeichnung();
+                }
+
+                return returnValue;
+            }
+
+            private set { }
+        }
+
+        public ItemBV(Typ TypItem, string Bezeichnung, double PreisItem)
+        {
+            //this.IDItem = IDItem;
             this.TypItem = TypItem;
             this.Bezeichnung = Bezeichnung;
             this.PreisItem = PreisItem;

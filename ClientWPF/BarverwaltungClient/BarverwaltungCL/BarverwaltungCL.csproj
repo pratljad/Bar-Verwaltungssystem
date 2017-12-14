@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,11 +47,20 @@
     <Compile Include="Barverwaltung\Song.cs" />
     <Compile Include="Barverwaltung\Tabak.cs" />
     <Compile Include="Barverwaltung\Tischreservierung.cs" />
-    <Compile Include="Manager\ManagerBestellungen.cs" />
+    <Compile Include="IDManager\IDGeneratorBestellungen.cs" />
+    <Compile Include="IDManager\IDGeneratorRechnungen.cs" />
+    <Compile Include="IDManager\IDGeneratorReservierungen.cs" />
+    <Compile Include="IDManager\IDGeneratorTables.cs" />
     <Compile Include="Manager\ManagerPlaylist.cs" />
     <Compile Include="Manager\ManagerRechnungen.cs" />
     <Compile Include="Manager\ManagerReservierungen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Invoicer\Invoicer.csproj">
+      <Project>{E5BA227E-4AFE-448A-B879-A2784B3FC97C}</Project>
+      <Name>Invoicer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

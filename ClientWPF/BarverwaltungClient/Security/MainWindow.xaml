@@ -1,0 +1,34 @@
+﻿<Window x:Class="Security.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"        
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        xmlns:local="clr-namespace:Security"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="279.161" Width="377.964">
+    <Grid Margin="0,0,-6.8,-3.6" KeyDown="Grid_KeyDown" HorizontalAlignment="Left" Width="362">
+        <materialDesign:Card Padding="20" Margin="16,16,16,0" Background="#FF2196F3" Height="80">
+            <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}" HorizontalAlignment="Center" FontSize="25" Margin="46,0,45.6,-11" >Barverwaltung</TextBlock>
+        </materialDesign:Card>
+        <ComboBox x:Name="CB_User" HorizontalAlignment="Left" Margin="34,110,0,0" VerticalAlignment="Top" Width="293" Foreground="Black" BorderBrush="White">
+            <ComboBox.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </ComboBox.Background>
+        </ComboBox>
+        <PasswordBox x:Name="PWBox" HorizontalAlignment="Left" Margin="34,146,0,0" VerticalAlignment="Top" Height="24" Width="293"/>
+        <Button x:Name="BTN_Login" Content="Log in" HorizontalAlignment="Left" Margin="245,185,0,0" VerticalAlignment="Top" Width="82" Click="BTN_Login_Click" BorderBrush="Black" Height="30"/>
+        <Label x:Name="label" Content="© Team A" HorizontalAlignment="Left" Margin="10,217,0,0" VerticalAlignment="Top" Width="235"/>
+
+    </Grid>
+</Window>

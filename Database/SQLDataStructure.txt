@@ -1,0 +1,191 @@
+drop table TableBV cascade constraints;
+drop table TableReservationsBV cascade constraints;
+drop table TobaccoBV cascade constraints;
+drop table ItemBV cascade constraints;
+drop table OrderBV cascade constraints;
+drop table BillBV cascade constraints;
+drop table UserBV cascade constraints;
+
+
+CREATE TABLE TableBV (
+	IDTable NUMBER PRIMARY KEY,
+	position SDO_GEOMETRY
+);
+
+-- Auflösung Tabelle Table und Reservierungen
+create table TableReservationsBV(
+  IDReservation number,
+  IDTable number,
+  Datetime date,
+  
+  primary key(IDTable, Datetime),
+  foreign key(IDTable) references TableBV(IDTable)
+);
+  
+create table TobaccoBV(
+  IDTobacco number primary key,
+  Brand varchar2(20),
+  Variety varchar2(20),
+  isAvailable number
+);
+
+create table ItemBV(
+  IDItem number primary key,
+  Description varchar2(20),
+  Typ varchar2(20),
+  PriceItem decimal
+);
+
+create table OrderBV(
+  IDOrder number primary key,
+  DateTime Date,
+  IDItem number,
+  IDTable number,
+  PriceOrder decimal,
+  
+  foreign key(IDTable) references TableBV(IDTable),
+  foreign key(IDItem) references ItemBV(IDItem)
+);
+  
+create table BillBV(
+  IDBill number primary key,
+  DateTime Date,
+  IDOrder number,
+  PriceBill decimal,
+  
+  foreign key(IDOrder) references OrderBV(IDOrder)
+);
+
+create table UserBV(
+  IDUser number primary key,
+  Username varchar2(20),
+  Password varchar2(20)
+);
+
+INSERT INTO user_sdo_geom_metadata
+(	TABLE_NAME,
+	COLUMN_NAME,
+	DIMINFO,
+	SRID
+)
+VALUES 
+(	'TableBV',
+	'position',
+	SDO_DIM_ARRAY( -- 20X20 grid
+		SDO_DIM_ELEMENT('X', 0, 200, 0.005),
+		SDO_DIM_ELEMENT('Y', 0, 200, 0.005)
+	),
+	NULL -- SRID
+);
+
+CREATE INDEX tablebv_index ON TableBV(position) INDEXTYPE IS MDSYS.SPATIAL_INDEX;
+
+-- INSERTS
+
+-- TOBACCO
+insert into TobaccoBV values(1, '7 Days', 'Green Slip', 1);
+insert into TobaccoBV values(2, '7 Days', 'Blush', 1);
+insert into TobaccoBV values(3, '7 Days', 'Blizzard Lemo', 1);
+insert into TobaccoBV values(4, '7 Days', 'ChristolleX', 1);
+insert into TobaccoBV values(5, '7 Days', 'five oclock', 1);
+insert into TobaccoBV values(6, '7 Days', 'Bana', 1);
+insert into TobaccoBV values(7, 'Adalya', 'Two App', 1);
+insert into TobaccoBV values(8, 'Adalya', 'Swiss Passion', 1);
+insert into TobaccoBV values(9, 'Adalya', 'Wind of Cuba', 1);
+insert into TobaccoBV values(10, 'Adalya', 'Pink Princess', 1);
+insert into TobaccoBV values(11, 'Adalya', 'Earl Gry', 1);
+insert into TobaccoBV values(12, 'Adalya', 'Ipanema', 1);
+insert into TobaccoBV values(13, 'Hasso', 'Grapefruit', 1);
+insert into TobaccoBV values(14, 'Hasso', 'Freezy Blue Barry', 1);
+insert into TobaccoBV values(15, 'Hasso', 'Fata Morgana', 1);
+insert into TobaccoBV values(16, 'Hasso', 'Chicharito', 1);
+insert into TobaccoBV values(17, 'Hasso', 'Mellon Punch', 1);
+insert into TobaccoBV values(18, 'Hasso', 'Grape Addiction', 1);
+insert into TobaccoBV values(19, 'Al Fakher', 'Traube', 1);
+insert into TobaccoBV values(20, 'Al Fakher', 'Doppelapfel', 1);
+insert into TobaccoBV values(21, 'Al Fakher', 'Minze', 1);
+insert into TobaccoBV values(22, 'Al Fakher', 'Heidelbeere', 1);
+insert into TobaccoBV values(23, 'Al Fakher', 'Kiwi', 1);
+insert into TobaccoBV values(24, 'Al Fakher', 'Beerenmischung', 1);
+
+-- DRINKS
+insert into ItemBV values(1, 'Pago Erdbeer', 'Drink', 2.80);
+insert into ItemBV values(2, 'Pago Kiwi', 'Drink', 2.80);
+insert into ItemBV values(3, 'Coca Cola', 'Drink', 2.50);
+insert into ItemBV values(4, 'Fanta', 'Drink', 2.50);
+insert into ItemBV values(5, 'Sprite', 'Drink', 2.50);
+insert into ItemBV values(6, 'Mezzo Mix', 'Drink', 2.50);
+insert into ItemBV values(7, 'Bier', 'Drink', 3.50);
+insert into ItemBV values(8, 'Red Bull', 'Drink', 3.20);
+insert into ItemBV values(9, 'Mineral', 'Drink', 2.20);
+insert into ItemBV values(10, 'Apfeltee klein', 'Drink', 3.50);
+insert into ItemBV values(11, 'Apfeltee groß', 'Drink', 6.00);
+insert into ItemBV values(12, 'Früchtetee klein', 'Drink', 3.50);
+insert into ItemBV values(13, 'Früchtetee groß', 'Drink', 6.00);
+
+-- FOOD
+insert into ItemBV values(14, 'Käsetoast', 'Food', 3.00);
+insert into ItemBV values(15, 'Schinken-Käse-Toast', 'Food', 3.00);
+insert into ItemBV values(16, 'Schinkenbaguette', 'Food', 4.00);
+insert into ItemBV values(17, 'Snickers', 'Food', 1.10);
+insert into ItemBV values(18, 'Mars', 'Food', 1.10);
+insert into ItemBV values(19, 'Twix', 'Food', 1.10);
+
+-- HOOKAH
+insert into ItemBV values(20, 'Normal Hookah', 'Hookah', 10.00);
+insert into ItemBV values(21, 'AK-47 Hookah', 'Hookah', 18.00);
+insert into ItemBV values(22, 'LaMar La-Sky Hookah', 'Hookah', 18.00);
+insert into ItemBV values(23, 'Belvedere Hookah', 'Hookah', 20.00);
+insert into ItemBV values(24, 'Watermelon Hookah', 'Hookah', 25.00);
+
+-- USERS
+insert into UserBV values(1, 'Philipp', '1234');
+insert into UserBV values(2, 'Dragan', '1234');
+insert into UserBV values(3, 'Tician', '1234');
+insert into UserBV values(4, 'Chef', 'password');
+
+-- TABLES
+INSERT INTO TableBV VALUES(1,
+	SDO_GEOMETRY(
+		2003,
+		NULL,
+		NULL,
+		SDO_ELEM_INFO_ARRAY(1,1003,1),
+    SDO_ORDINATE_ARRAY(20,20, 100,20, 100,100, 20,100, 20,20)
+	)
+);
+
+INSERT INTO TableBV VALUES(2,
+	SDO_GEOMETRY(
+		2003, -- two-dimensional polygon
+		NULL,
+		NULL,
+		SDO_ELEM_INFO_ARRAY(1,1003,1), -- one rectangle (1003 = exterior)
+    SDO_ORDINATE_ARRAY(300,20, 500,20, 500,100, 300,100, 300,20) -- only 2 points needed to
+		-- define rectangle (lower left and upper right) with
+		-- Cartesian-coordinate data
+	)
+);
+
+INSERT INTO TableBV VALUES(3,
+	SDO_GEOMETRY(
+		2003, -- two-dimensional polygon
+		NULL,
+		NULL,
+		SDO_ELEM_INFO_ARRAY(1,1003,1), -- one rectangle (1003 = exterior)
+    SDO_ORDINATE_ARRAY(500,350, 650,350, 650,500, 500,500, 500,350) -- only 2 points needed to
+		-- define rectangle (lower left and upper right) with
+		-- Cartesian-coordinate data
+	)
+);
+
+-- RESERVATIONS
+insert into TableReservationsBV values(1, 2, TO_DATE('2017/12/12 21:00:00', 'yyyy/mm/dd hh24:mi:ss'));
+insert into TableReservationsBV values(2, 3, TO_DATE('2017/12/13 19:00:00', 'yyyy/mm/dd hh24:mi:ss'));
+insert into TableReservationsBV values(3, 3, TO_DATE('2017/12/14 18:30:00', 'yyyy/mm/dd hh24:mi:ss'));
+insert into TableReservationsBV values(3, 1, TO_DATE('2017/12/14 18:30:00', 'yyyy/mm/dd hh24:mi:ss'));
+insert into TableReservationsBV values(4, 3, TO_DATE('2017/12/14 16:00:00', 'yyyy/mm/dd hh24:mi:ss'));
+
+commit;
+
+

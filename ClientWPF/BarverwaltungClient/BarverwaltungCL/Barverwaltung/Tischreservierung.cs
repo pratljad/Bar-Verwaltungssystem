@@ -3,20 +3,44 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BarverwaltungCL.IDManager;
 
 namespace BarverwaltungCL.Barverwaltung
 {
-    class Tischreservierung
+    public class Tischreservierung
     {
-        private DateTime TimestampReservierung;
-        private List<int> Tischnummern;
+        public DateTime TimestampReservierung { get; private set; }
+        public int IDReservierung { get; private set; }
+        public List<int> Tischnummern { get; private set; }
+        public string TischnummernLV
+        {
+            get
+            {
+                string returnValue = "";
+
+                foreach(int i in Tischnummern)
+                {
+                    if (returnValue == "")
+                        returnValue = Convert.ToString(i);
+                    else
+                        returnValue += "," + i;
+                }
+
+                return returnValue;
+            }
+
+            private set { } 
+        }
 
         public Tischreservierung (DateTime TimestampReservierung)
         {
+            this.IDReservierung = IDGeneratorReservierungen.getID();
             this.TimestampReservierung = TimestampReservierung;
+
+            Tischnummern = new List<int>();
         }
 
-        public void addTisch(int Tischnummer)
+        public void addTischnummer(int Tischnummer)
         {
             Tischnummern.Add(Tischnummer);
         }

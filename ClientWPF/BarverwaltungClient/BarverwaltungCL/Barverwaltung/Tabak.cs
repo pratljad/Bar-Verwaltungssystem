@@ -8,13 +8,20 @@ namespace BarverwaltungCL.Barverwaltung
 {
     public class Tabak
     {
-        private int IDTabak;
+        // Überlegen wenn keine ID benötigt wird statt Tabak einfach string verwenden
+
+        //private int IDTabak;
         private string Bezeichnung;
 
-        public Tabak(int IDTabak, string Bezeichnung)
+        public Tabak(string Bezeichnung)
         {
-            this.IDTabak = IDTabak;
+            //this.IDTabak = IDTabak;
             this.Bezeichnung = Bezeichnung;
+        }
+
+        public string getBezeichnung()
+        {
+            return Bezeichnung;
         }
     }
 }

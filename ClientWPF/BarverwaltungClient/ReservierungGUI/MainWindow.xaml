@@ -1,0 +1,19 @@
+﻿<Window x:Class="ReservierungGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ReservierungGUI"
+        mc:Ignorable="d"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="MainWindow" Height="345.882" Width="520.882">
+    <Grid Height="319" VerticalAlignment="Top">
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="New Reservation" VerticalAlignment="Top" Height="28" Width="248" FontSize="20"/>
+        <Calendar HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top"/>
+        <xctk:TimePicker Margin="10,216,328,73"></xctk:TimePicker>
+        <xctk:WatermarkTextBox x:Name="TF_Tischnummer" Watermark="Enter table number" Margin="207,46,98,235" />
+        <ListBox x:Name="LB_Tischnummern" HorizontalAlignment="Left" Height="157" Margin="207,89,0,0" VerticalAlignment="Top" Width="282"/>
+        <Button x:Name="BTN_Add" Content="Add" HorizontalAlignment="Left" Margin="424,46,0,0" VerticalAlignment="Top" Width="65" Height="38" Background="#FFDDDDDD" Click="BTN_Add_Click"/>
+        <Button x:Name="BTN_Save" Content="Save" HorizontalAlignment="Left" Margin="414,260,0,0" VerticalAlignment="Top" Width="75" Height="35"/>
+    </Grid>
+</Window>

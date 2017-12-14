@@ -1,0 +1,10 @@
+Zusatzfunktionen: Dokumentensuche Gewinn pro Tag
+Order by column bei Bestellungen oder Funktion "alle Bestellungen von Tisch 1" zahlen
+
+ID vergabve automatisch, Editieren von Reservierungen, wenn reserv. vorbei automatisch löschen, warnung wenn tisch zu dieser zeit bereits besetzt
+
+
+13.12: Wenn Reservierung innerhalb einer Stunde mit anderer Warnung, wenn Tisch nicht vorhanden Exception und Fehlermeldung, Remove ausprogrammieren
+MesageBox ersetzen
+Bestellungen mit DB verbinden
+Settingsfenster wo man User verwalten kann und Produkte löschen / hinzufügen

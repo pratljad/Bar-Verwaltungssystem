@@ -1,0 +1,5 @@
+C:\HTL\5.Schuljahr\BSD\Barverwaltung\BarverwaltungClient\DataBase\bin\Debug\DataBase.dll
+C:\HTL\5.Schuljahr\BSD\Barverwaltung\BarverwaltungClient\DataBase\bin\Debug\DataBase.pdb
+C:\HTL\5.Schuljahr\BSD\Barverwaltung\BarverwaltungClient\DataBase\obj\Debug\DataBase.csprojResolveAssemblyReference.cache
+C:\HTL\5.Schuljahr\BSD\Barverwaltung\BarverwaltungClient\DataBase\obj\Debug\DataBase.dll
+C:\HTL\5.Schuljahr\BSD\Barverwaltung\BarverwaltungClient\DataBase\obj\Debug\DataBase.pdb
