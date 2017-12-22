@@ -2,3 +2,4 @@
 20.10.2017 Überarbeitung ERD, Erste Recherchen über Angular, Test App mit Angular, Mockup C# Client
 27.10.2017 Erneute Überarbeitung ERD, Vertiefende Recherchen Angular, C# Client First Version
 10.11.2017 C# Client Überarbeitung, Datenbank aufgesetzt, Angular First Version
+22.12.2017: C# Client mit Datenbank verbunden und alle Funktionen fertig, Datenbank Update -> Neu aufgesetzt, Angular Bereits neuere Version, Webservice gestartet
