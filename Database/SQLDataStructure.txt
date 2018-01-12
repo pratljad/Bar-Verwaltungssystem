@@ -1,15 +1,23 @@
-drop table TableBV cascade constraints;
+drop table TablesBV cascade constraints;
 drop table TableReservationsBV cascade constraints;
 drop table TobaccoBV cascade constraints;
 drop table ItemBV cascade constraints;
 drop table OrderBV cascade constraints;
 drop table BillBV cascade constraints;
 drop table UserBV cascade constraints;
+drop table SongsBV cascade constraints;
 
-
-CREATE TABLE TableBV (
+CREATE TABLE TablesBV (
 	IDTable NUMBER PRIMARY KEY,
 	position SDO_GEOMETRY
+);
+
+CREATE TABLE SongsBV (
+  IDTable number,
+  Title varchar2(50),
+  Artist varchar2(50),
+  
+  foreign key(IDTable) references TablesBV(IDTable)
 );
 
 -- Auflösung Tabelle Table und Reservierungen
@@ -19,7 +27,7 @@ create table TableReservationsBV(
   Datetime date,
   
   primary key(IDTable, Datetime),
-  foreign key(IDTable) references TableBV(IDTable)
+  foreign key(IDTable) references TablesBV(IDTable)
 );
   
 create table TobaccoBV(
@@ -37,23 +45,27 @@ create table ItemBV(
 );
 
 create table OrderBV(
-  IDOrder number primary key,
+  IDOrder number,
   DateTime Date,
   IDItem number,
   IDTable number,
-  PriceOrder decimal,
+  --PriceOrder decimal,
+  TobaccoID1 number,
+  TobaccoID2 number,
   
-  foreign key(IDTable) references TableBV(IDTable),
-  foreign key(IDItem) references ItemBV(IDItem)
+  foreign key(IDTable) references TablesBV(IDTable),
+  foreign key(IDItem) references ItemBV(IDItem),
+  foreign key(TobaccoID1) references TobaccoBV(IDTobacco),
+  foreign key(TobaccoID2) references TobaccoBV(IDTobacco)
 );
   
 create table BillBV(
   IDBill number primary key,
   DateTime Date,
-  IDOrder number,
-  PriceBill decimal,
+  --IDOrder number, falls bei Bill alle Order gebraucht werden dies einbauen
+  PriceBill decimal
   
-  foreign key(IDOrder) references OrderBV(IDOrder)
+  --foreign key(IDOrder) references OrderBV(IDOrder)
 );
 
 create table UserBV(
@@ -69,7 +81,7 @@ INSERT INTO user_sdo_geom_metadata
 	SRID
 )
 VALUES 
-(	'TableBV',
+(	'TablesBV',
 	'position',
 	SDO_DIM_ARRAY( -- 20X20 grid
 		SDO_DIM_ELEMENT('X', 0, 200, 0.005),
@@ -78,11 +90,12 @@ VALUES
 	NULL -- SRID
 );
 
-CREATE INDEX tablebv_index ON TableBV(position) INDEXTYPE IS MDSYS.SPATIAL_INDEX;
+CREATE INDEX TablesBV_index ON TablesBV(position) INDEXTYPE IS MDSYS.SPATIAL_INDEX;
 
 -- INSERTS
 
 -- TOBACCO
+insert into TobaccoBV values(0, '', '', 1);
 insert into TobaccoBV values(1, '7 Days', 'Green Slip', 1);
 insert into TobaccoBV values(2, '7 Days', 'Blush', 1);
 insert into TobaccoBV values(3, '7 Days', 'Blizzard Lemo', 1);
@@ -145,7 +158,7 @@ insert into UserBV values(3, 'Tician', '1234');
 insert into UserBV values(4, 'Chef', 'password');
 
 -- TABLES
-INSERT INTO TableBV VALUES(1,
+INSERT INTO TablesBV VALUES(1,
 	SDO_GEOMETRY(
 		2003,
 		NULL,
@@ -155,7 +168,7 @@ INSERT INTO TableBV VALUES(1,
 	)
 );
 
-INSERT INTO TableBV VALUES(2,
+INSERT INTO TablesBV VALUES(2,
 	SDO_GEOMETRY(
 		2003, -- two-dimensional polygon
 		NULL,
@@ -167,7 +180,7 @@ INSERT INTO TableBV VALUES(2,
 	)
 );
 
-INSERT INTO TableBV VALUES(3,
+INSERT INTO TablesBV VALUES(3,
 	SDO_GEOMETRY(
 		2003, -- two-dimensional polygon
 		NULL,
@@ -186,6 +199,26 @@ insert into TableReservationsBV values(3, 3, TO_DATE('2017/12/14 18:30:00', 'yyy
 insert into TableReservationsBV values(3, 1, TO_DATE('2017/12/14 18:30:00', 'yyyy/mm/dd hh24:mi:ss'));
 insert into TableReservationsBV values(4, 3, TO_DATE('2017/12/14 16:00:00', 'yyyy/mm/dd hh24:mi:ss'));
 
+-- SONGS
+insert into SongsBV values(2, 'Ok cool', 'Yung Hurn');
+insert into SongsBV values(1, 'Zu gut zu euch', 'Mosh36');
+insert into SongsBV values(3, 'Geh meinen Weg', 'Luciano');
+
+-- ORDERS
+insert into OrderBV values(1, TO_DATE('2017/12/12 21:00:00', 'yyyy/mm/dd hh24:mi:ss'), 8, 1, 0, 0);
+insert into OrderBV values(1, TO_DATE('2017/12/12 21:00:00', 'yyyy/mm/dd hh24:mi:ss'), 9, 1, 0, 0);
+insert into OrderBV values(1, TO_DATE('2017/12/12 21:00:00', 'yyyy/mm/dd hh24:mi:ss'), 15, 1, 0, 0);
+insert into OrderBV values(1, TO_DATE('2017/12/12 21:00:00', 'yyyy/mm/dd hh24:mi:ss'), 21, 1, 10, 0);
+
+insert into OrderBV values(2, TO_DATE('2017/12/12 22:00:00', 'yyyy/mm/dd hh24:mi:ss'), 8, 2, 0, 0);
+insert into OrderBV values(2, TO_DATE('2017/12/12 22:00:00', 'yyyy/mm/dd hh24:mi:ss'), 8, 2, 0, 0);
+
+insert into OrderBV values(3, TO_DATE('2017/12/12 22:30:00', 'yyyy/mm/dd hh24:mi:ss'), 9, 2, 0, 0);
+insert into OrderBV values(3, TO_DATE('2017/12/12 22:30:00', 'yyyy/mm/dd hh24:mi:ss'), 9, 2, 0, 0);
+
+insert into OrderBV values(4, TO_DATE('2017/12/12 18:00:00', 'yyyy/mm/dd hh24:mi:ss'), 2, 3, 0, 0);
+insert into OrderBV values(4, TO_DATE('2017/12/12 18:00:00', 'yyyy/mm/dd hh24:mi:ss'), 4, 3, 0, 0);
+insert into OrderBV values(4, TO_DATE('2017/12/12 18:00:00', 'yyyy/mm/dd hh24:mi:ss'), 15, 3, 0, 0);
+insert into OrderBV values(4, TO_DATE('2017/12/12 18:00:00', 'yyyy/mm/dd hh24:mi:ss'), 23, 3, 3,7);
+
 commit;
-
-
