@@ -1,0 +1,42 @@
+<div class="logo">
+    <a href="#" class="simple-text">
+        Barverwaltung
+    </a>
+</div>
+<div class="sidebar-wrapper">
+    
+
+    <ul class="nav nav-mobile-menu" *ngIf="isMobileMenu()">
+        
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="material-icons">shopping_cart</i>
+                <span class="notification">5</span>
+                <p class="hidden-lg hidden-md">Cart</p>
+            </a>
+            <ul class="dropdown-menu">
+                    <h3>All Items</h3>
+                    <li><a href="#">Käsetoast (1) - 3,50€</a></li>
+                    <li><a href="#">Kiwipago (1) - 3,50€</a></li>
+                    <li><a href="#">Erdbeerpago (1) - 3,50€</a></li>
+                    <li><a href="#">Normal Shisha (3) - 28,50€</a></li>
+                    <li><a href="#">Special Shisha (2) - 29,00€</a></li>
+                    <div>
+                        <p>Total cost: </p>
+                        <p>68,00€</p>
+                    </div>
+            </ul>
+        </li>
+    </ul>
+
+    <div class="nav-container">
+        <ul class="nav">
+            <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}}">
+                <a  [routerLink]="[menuItem.path]">
+                    <i class="material-icons">{{menuItem.icon}}</i>
+                    <p>{{menuItem.title}}</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
